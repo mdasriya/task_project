@@ -1,0 +1,16 @@
+.bi-grid{
+    border: 1px solid white;
+    padding: 10px;
+    /* background-color: blue; */
+    /* color: white; */
+}
+
+.bi-grid:hover{
+    border: 1px solid #5030E5;
+    padding: 10px;
+    background-color: #5030E5;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+  
+}
