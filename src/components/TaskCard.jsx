@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import styled from '@emotion/styled';
+import Context, { Data } from './Context';
 import { Avatar, AvatarGroup, Box,Image,Text } from '@chakra-ui/react';
 // import CustomAvatar from '../TableComponents/CustomAvatar'
 // import { ReactComponent as RedArrow } from '../../assets/icons/High.svg'
@@ -43,12 +44,15 @@ const TaskInformation = styled.div`
 `;
 
 const TaskCard = ({ item, index }) => {
+ 
+
+
   return (
     <Draggable key={item.id} draggableId={item.id} index={index}
     //  border="1px solid green"
      >
       {(provided) => (
-        <Box
+        <Box 
            ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
@@ -63,7 +67,7 @@ const TaskCard = ({ item, index }) => {
 
 
             <Text fontSize={"xl"}>{item.Task}</Text>
-            <Text  textAlign={"left"}>{item.detail}</Text>
+            <Text  textAlign={"left"} fontSize={"14px"}>{item.detail}</Text>
 {
   item.img && <Image src={item.img} alt='Dan Abramov' />
 }

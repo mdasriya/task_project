@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { Input, InputGroup, Menu, Image, Button, MenuItem, InputLeftElement, Text, Icon, Box, MenuButton, Avatar, MenuList, MenuDivider, Flex, AvatarGroup } from "@chakra-ui/react";
 import { FaSearch } from "react-icons/fa";
 import '../App.css'
 import Kanban from './Kanban';
+import Context, { Data } from './Context';
 
-const TopNav = ({ handleOpenSide }) => {
+const TopNav = ({ handleOpenSide}) => {
+    //  const [inside, setInside]  = useState("Mobile App")
+    const {text}=useContext(Data)
+    // console.log(data);
+
+
+
     return (
         <Box textAlign={"end"} justifyContent={"end"}>
-            <Box border={"1px solid gray"} width={"100%"} display={"flex"} p={5} justifyContent={"space-between"} alignItems={"center"} >
+            <Box borderBottom={"1px solid gray"} width={"100%"} display={"flex"} p={5} justifyContent={"space-between"} alignItems={"center"} >
 
                 <Box display={"flex"} gap={5}>
                     <i className="bi bi-chevron-double-right" onClick={handleOpenSide}></i>
@@ -82,7 +89,7 @@ const TopNav = ({ handleOpenSide }) => {
             padding={5} width={"100%"} display={"flex"} justifyContent={"space-between"} alignItems={"center"}>
 
                 <Box display={"flex"} gap={5} alignItems={"center"} >
-                    <Text fontSize='3xl'>Mobile App</Text>
+                    <Text fontSize='3xl'>{text?text:"Mobile App"}</Text>
                     <Image
                         boxSize='30px'
                         objectFit='cover'
@@ -167,7 +174,7 @@ const TopNav = ({ handleOpenSide }) => {
 
             {/* *********************************Filter Section is start******************************* */}
 
-<Box border={"1px solid blue"} display={"flex"} justifyContent={"space-between"} alignItems={"center"} p={"0px,20px"}>
+<Box  display={"flex"} justifyContent={"space-between"} alignItems={"center"} p={"0px,20px"} ml={6}>
 
 
             <Box display={"flex"} gap={4}  >
@@ -302,7 +309,7 @@ const TopNav = ({ handleOpenSide }) => {
 
             </Box>
 
-<Box width={"100%"} border={"1px solid green"} justifyContent={"space-between"}>
+<Box>
 
 <Kanban  />
 </Box>

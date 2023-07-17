@@ -1,14 +1,20 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Image, Box, Text,Circle, Button } from '@chakra-ui/react'
 import TopNav from './TopNav'
 import {data} from "./data"
 
-
+import Context, { Data } from './Context';
 
 
 
 const Sidebar = () => {
   const [side, setSide] = useState(true)
+  const {SetText,text}=useContext(Data)
+    // console.log(text);
+// const data.SetText = () => {
+
+// }
+
 
   const handleSide = () => {
     setSide((prev)=> !prev)
@@ -23,22 +29,22 @@ const handleOpenSide = () => {
     
     <Box display={"flex"}>
     {
-      side && <Box  width={"30%"}  border={"1px solid gray"}> 
+      side && <Box  width={"20%"}  border={"1px solid gray"}> 
       <Box  width={"100%"} borderBottom={"1px solid gray"} 
        alignItems={"center"} justifyContent={"space-between"} display={"flex"} padding={7}>
   
-        <Box className='logo' display={"flex"} alignItems={"center"} gap={2}>
+        <Box className='logo' display={"flex"}  width={"100px"} alignItems={"center"} gap={2}>
             <Image
-              boxSize='25px'
+              boxSize='21px'
               objectFit='cover'
               src='https://kanban-19hrlu0a9-chintansheth2001.vercel.app/assets/logo-e9f0ffae.svg'
               alt='logo' />
-            <Text fontSize='xl' fontWeight={600}>Project M.</Text>
+            <Text fontSize='15px' fontWeight={600}>Project M.</Text>
           
         </Box>
         <Box>
           <Image onClick={handleSide}
-              boxSize='20px'
+              boxSize='25px'
               objectFit='cover'
               src='https://kanban-19hrlu0a9-chintansheth2001.vercel.app/assets/arrowLeft-1d17ed92.svg'
               alt='arrow' />
@@ -69,19 +75,19 @@ const handleOpenSide = () => {
   
   <Box display={"flex"}  alignItems={"center"} _hover={{cursor:"pointer"}}>
   <i style={{fontSize:"40px",color:"green"}} className="bi bi-dot"></i>
-  <Text fontWeight={500} opacity={"0.7"} _hover={{opacity:"1"}}>Mobile App</Text>
+  <Text fontWeight={500} opacity={"0.7"} _hover={{opacity:"1"}}  onClick={(e)=>SetText("Mobile App")}>Mobile App</Text>
   </Box>
   <Box display={"flex"}  alignItems={"center"} _hover={{cursor:"pointer"}}>
   <i style={{fontSize:"40px",color:"orange"}} className="bi bi-dot"></i>
-  <Text fontWeight={500} opacity={"0.7"} _hover={{opacity:"1"}}>Website Redesign</Text>
+  <Text fontWeight={500} opacity={"0.7"} _hover={{opacity:"1"}}  onClick={(e)=>SetText('Website Redesign')}>Website Redesign</Text>
   </Box>
   <Box display={"flex"}  alignItems={"center"} _hover={{cursor:"pointer"}}>
   <i style={{fontSize:"40px",color:"blue"}} className="bi bi-dot"></i>
-  <Text fontWeight={500} opacity={"0.7"} _hover={{opacity:"1"}}>Design Sysytem</Text>
+  <Text fontWeight={500} opacity={"0.7"} _hover={{opacity:"1"}}  onClick={(e)=>SetText("Design Sysytem")}>Design Sysytem</Text>
   </Box>
   <Box display={"flex"}  alignItems={"center"} _hover={{cursor:"pointer"}}>
   <i style={{fontSize:"40px",color:"teal"}} className="bi bi-dot"></i>
-  <Text fontWeight={500} opacity={"0.7"} _hover={{opacity:"1"}}>Wirefrmaes</Text>
+  <Text fontWeight={500} opacity={"0.7"} _hover={{opacity:"1"}} value={"Wirefrmaes"} onClick={(e)=>SetText("Wirefrmaes")}>Wirefrmaes</Text>
   </Box>
   </Box>
   

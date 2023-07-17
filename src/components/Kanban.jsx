@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { columnsFromBackend } from './KanbanData';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import TaskCard from './TaskCard';
+import { Data } from './Context';
 
 const Container = styled.div`
   display: flex;
@@ -36,7 +37,12 @@ const Title = styled.span`
 
 const Kanban = () => {
   const [columns, setColumns] = useState(columnsFromBackend);
+  const [inside, setInside] = useState("")
+  const {text}=useContext(Data)
 
+
+
+console.log(text);
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
     const { source, destination } = result;
@@ -72,7 +78,22 @@ const Kanban = () => {
       });
     }
   };
-  console.log(columns);
+  // console.log(columns);
+
+  useEffect(()=> {
+    if(text=="Mobile App"){
+      setInside("MA")
+        }else if(text=="Website Redesign"){
+          setInside("WR")
+        }else if (text=="Design Sysytem"){
+          setInside("DS")
+        }else {
+          setInside("W")
+        }
+  },[text])
+ 
+
+
   return (
     <DragDropContext  
       onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
@@ -82,12 +103,24 @@ const Kanban = () => {
           {Object.entries(columns).map(([columnId, column], index) => {
             return (
               <Droppable key={columnId} droppableId={columnId}>
-                {(provided, snapshot) => (
+                {(provided) => (
                   <TaskList
                     ref={provided.innerRef}
                     {...provided.droppableProps}
                   >
-                    <Title>{column.title}</Title>
+                    <Title>{inside} {column.title}</Title><br />
+                    {
+                      column.title=="Done" && <hr style={{ border: "none", borderTop: "2px solid green" }} />
+                    }
+                    
+                    {
+                      column.title=="On Progress" && <hr style={{ border: "none", borderTop: "2px solid orange" }} />
+                    }
+                    {
+                      column.title=="To-do" && <hr style={{ border: "none", borderTop: "2px solid blue" }} />
+                    }
+                  
+                   
                     {column.items.map((item, index) => (
                       <TaskCard key={item.id} item={item} index={index} />
                     ))}
